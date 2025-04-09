@@ -1,79 +1,146 @@
 <div class="container">
-    <nav class="navbar">
-      <div class="logo">SKEELS PORTAL</div>
-      <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">About Us</a>
-        <a href="#">Resources</a>
-        <button class="btn-post">Post A Job</button>
-        <button class="btn-sign">Sign In/Up</button>
+  <nav class="navbar">
+    <div class="logo">SKEELS PORTAL</div>
+    <div class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/about">About Us</a>
+      <button class="btn btn-post" (click)="onPostJob()">Post A Job</button>
+      <button class="btn btn-sign" (click)="onRegister()">Sign In/Up</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>FIND A JOB THAT SUITS<br />YOUR SKILLS & INTERESTS</h1>
+    <p>
+      By adding and updating your skills, we help you find the job that suits
+      your expertise. You can also find the best people with the skills you
+      require by posting a job.
+    </p>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Job title, Keyword..." />
+      <input type="text" placeholder="Your Location" />
+      <button>Find a Job</button>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div>1,75,324<br /><small>Live Jobs</small></div>
+    <div>97,354<br /><small>Companies</small></div>
+    <div>38,47,154<br /><small>Candidates</small></div>
+    <div>7,532<br /><small>New Jobs</small></div>
+  </section>
+
+  <section class="vacancies">
+    <h2>Most Popular Vacancies</h2>
+    <!-- Example categories as divs -->
+    <div class="categories">
+      <div class="category">Anesthesiologists</div>
+      <div class="category">Surgeons</div>
+      <div class="category">Developers</div>
+      <div class="category">Designers</div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How does it work?</h2>
+    <div class="steps">
+      <div>Create Account</div>
+      <div>Upload CV/Resume</div>
+      <div>Find Suitable Job</div>
+      <div>Apply Job</div>
+    </div>
+  </section>
+
+  <section class="featured-jobs">
+    <h2>Featured Jobs</h2>
+    <div class="job-cards">
+      <div class="job-card" *ngFor="let job of [1, 2, 3, 4]">
+        <h4>Software Engineer</h4>
+        <p>Google Inc. - Nairobi, Kenya</p>
+        <span>Full-Time</span>
       </div>
-    </nav>
-  
-    <header class="hero">
-      <h1>FIND A JOB THAT SUITS<br>YOUR SKILLS & INTERESTS</h1>
-      <p>
-        By adding and updating your skills, we help you find that job that suits your expertise.
-        You can also find the best people with the skills you require by posting also a job.
-      </p>
-  
-      <div class="search-bar">
-        <input type="text" placeholder="Job title, Keyword..." />
-        <input type="text" placeholder="Your Location" />
-        <button>Find a Job</button>
-      </div>
-    </header>
-  
-    <section class="stats">
-      <div>1,75,324<br /><small>Live Jobs</small></div>
-      <div>97,354<br /><small>Companies</small></div>
-      <div>38,47,154<br /><small>Candidates</small></div>
-      <div>7,532<br /><small>New Jobs</small></div>
-    </section>
-  
-    <section class="vacancies">
-      <h2>Most Popular Vacancies</h2>
-      <!-- Add a list of categories here like Anesthesiologists, Surgeons, etc. -->
-    </section>
-  
-    <section class="how-it-works">
-      <h2>How does it work?</h2>
-      <div class="steps">
-        <div>Create Account</div>
-        <div>Upload CV/Resume</div>
-        <div>Find Suitable Job</div>
-        <div>Apply Job</div>
-      </div>
-    </section>
-  
-    <section class="featured-jobs">
-      <h2>Featured Jobs</h2>
-      <div class="job-cards">
-        <!-- You’ll dynamically populate these later -->
-        <div class="job-card">
-          <h4>Software Engineer</h4>
-          <p>Google Inc. - Dhaka, Bangladesh</p>
-          <span>Full-Time</span>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-wrapper">
+      <div class="testimonial-container">
+        <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+          <blockquote>"{{ testimonial.quote }}"</blockquote>
+          <div class="author">- {{ testimonial.author }}</div>
         </div>
-        <!-- Repeat job cards -->
       </div>
-    </section>
-  
-    <section class="testimonials">
-      <blockquote>“A terrific piece of praise”</blockquote>
-      <blockquote>“A fantastic bit of feedback”</blockquote>
-      <blockquote>“A genuinely glowing review”</blockquote>
-    </section>
-  
-    <section class="cta">
-      <div>
-        <h3>Become a Candidate</h3>
-        <button>Register now</button>
+    </div>
+  </section>
+  <section class="cta">
+    <div class="cta-item candidate">
+      <h3>Become a Candidate</h3>
+      <p>
+        Welocme to this platform. Do you want others to notice your skills and
+        get jobs? Well if yes, you are in the right place, become a candidate to
+        continue.
+      </p>
+      <button (click)="onRegister()">Get Started</button>
+    </div>
+    <div class="cta-item recruiter">
+      <h3>Become a Recruiter</h3>
+      <p>
+        Do you to find candidates to perform your tasks and jobs? Well if yes,
+        you are in the right place, become a recruiter to continue.
+      </p>
+      <button (click)="onPostJob()">Get started</button>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="logo-and-contact">
+        <p class="logo">SKEELSPORTAL</p>
+        <p>Call now: <a href="tel:+3195550115">(319) 555-0115</a></p>
+        <p>
+          6391 Elgin St. Celina, Delaware 10299, New York, United States of
+          America
+        </p>
       </div>
-      <div>
-        <h3>Become a Recruiter</h3>
-        <button>Register now</button>
+      <div class="links">
+        <div class="link-column">
+          <h4>Quick Link</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Pricing</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="link-column">
+          <h4>Candidate</h4>
+          <a href="#">Browse Jobs</a>
+          <a href="#">Browse Employers</a>
+          <a href="#">Candidate Dashboard</a>
+          <a href="#">Saved Jobs</a>
+        </div>
+
+        <div class="link-column">
+          <h4>Employers</h4>
+          <a href="#">Post a Job</a>
+          <a href="#">Browse Candidates</a>
+          <a href="#">Employers Dashboard</a>
+          <a href="#">Applications</a>
+        </div>
+        <div class="link-column">
+          <h4>Support</h4>
+          <a href="#">FAQs</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
       </div>
-    </section>
-  </div>
-  
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Jobportal. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+</div>

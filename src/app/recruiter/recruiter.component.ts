@@ -8,6 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './recruiter.component.css'
 })
 export class RecruiterComponent {
+
+  dropdownVisible: boolean = false;
+   toggleDropdown(){
+    this.dropdownVisible = !this.dropdownVisible
+   }
   jobs = [
     {
       title: 'Software Engineer',

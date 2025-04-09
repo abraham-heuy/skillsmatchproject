@@ -1,44 +1,52 @@
 <div class="container">
-    <div class="header">
-      <div class="navbar">
-        <div class="logo">SKEELPORTAL</div>
-        <div class="nav-links">
-          <a href="#">HOME</a>
-          <a href="#">POST A JOB</a>
+  <div class="header">
+    <div class="navbar">
+      <div class="logo">SKEELPORTAL</div>
+      <div class="nav-links">
+        <a href="#">HOME</a>        
         </div>
-        <div class="user-profile">
-          <img src="path/to/profile-icon.png" alt="User Profile">
-        </div>
-      </div>
-      <div class="breadcrumb">
-        <a href="#">Home</a> / <a href="#">Find Job</a> / <a href="#">Graphics & Design</a> / <span>Job Details</span>
-      </div>
-      <div class="search-section">
-        <div class="search-logo">SKEELPORTAL</div>
-        <div class="search-bar">
-          <select>
-            <option>Kenya</option>
-            <!-- Add other options as needed -->
-          </select>
-          <input type="text" placeholder="Job title, keyword, company">
-          <button>FIND JOB MATCH</button>
-        </div>
+        <div class="profile-section">
+          <div class="imagecontent" (click)="toggleDropdown()"></div>
+          
+          <!-- Dropdown Menu: Always Rendered -->
+          <div class="dropdown-menu" [class.visible]="dropdownVisible">
+            <a routerLink="/portfolio">PROFILE</a>
+            <a href="#">CHAT AI</a>
+            <a routerLink="#">LOGOUT</a>
+          </div>
       </div>
     </div>
-    <div class="content2">
-        <div class="image1"></div>
-        <div class="content2-1">
-            <h3>Job Posting</h3>
-            <p>Looking for some people to hire
-                or assign projects? Well say less, get started to find the best match by posting the job.
-            </p>
-            <div class="buttons">
-                <button>Post a Job</button>
-                <button>Get a suggestion</button>
-            </div>
-        </div>
+
+    <div class="breadcrumb">
+      <a href="#">Home</a> / <a href="#">Find Job</a> / <a href="#">Graphics & Design</a> / <span>Job Details</span>
     </div>
-     <!-- Job Listings Section -->
+
+    <div class="search-section">
+      <div class="search-logo">SKEELPORTAL</div>
+      <div class="search-bar">
+        <select>
+          <option>Kenya</option>
+          <!-- Add other options as needed -->
+        </select>
+        <input type="text" placeholder="Job title, keyword, company">
+        <button>FIND JOB MATCH</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content2">
+    <div class="image1"></div>
+    <div class="content2-1">
+      <h3>Job Posting</h3>
+      <p>Looking for people to hire or assign projects? Get started to find the best match by posting the job.</p>
+      <div class="buttons">
+        <button>Post a Job</button>
+        <button>Get a suggestion</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Listings Section -->
   <div class="job-listings">
     <div class="section-header">
       <h2>JOBS YOU POSTED!</h2>
@@ -52,79 +60,76 @@
         <p><strong>Salary:</strong> {{ job.salary }}</p>
       </div>
     </div>
-    
+  </div>
 
   <!-- How It Works Section -->
   <div class="how-it-works">
     <div class="steps">
       <div class="step">
-        <!-- <img src="path/to/create-account-icon.png" alt="Create Account"> -->
         <h3>Create Account</h3>
         <p>Create your account to get started.</p>
       </div>
       <div class="step">
-        <!-- <img src="path/to/post-job-icon.png" alt="Post Job"> -->
         <h3>Post a Job</h3>
         <p>Post a job and reach suitable candidates.</p>
       </div>
       <div class="step">
-        <!-- <img src="path/to/find-candidate-icon.png" alt="Find Candidate"> -->
         <h3>Find Candidate</h3>
         <p>Review the candidates and shortlist the suitable ones.</p>
       </div>
       <div class="step">
-        <!-- <img src="path/to/interview-icon.png" alt="Interview and Hire"> -->
         <h3>Interview & Hire</h3>
         <p>Interview and hire the shortlisted candidates.</p>
       </div>
     </div>
   </div>
-  <footer class="footer">  
-    <div class="footer-content">  
-      <div class="logo-and-contact">  
-        <p class="logo">SKEELSPORTAL</p>  
-        <p>Call now: <a href="tel:+3195550115">(319) 555-0115</a></p>  
-        <p>6391 Elgin St. Celina, Delaware 10299, New York, United States of America</p>  
-      </div>  
-      <div class="links">  
-        <div class="link-column">  
-          <h4>Quick Link</h4>  
-          <a href="#">About</a>  
-          <a href="#">Contact</a>  
-          <a href="#">Pricing</a>  
-          <a href="#">Blog</a>  
-        </div>  
-        <div class="link-column">  
-          <h4>Candidate</h4>  
-          <a href="#">Browse Jobs</a>  
-          <a href="#">Browse Employers</a>  
-          <a href="#">Candidate Dashboard</a>  
-          <a href="#">Saved Jobs</a>  
-        </div>  
-        
-        <div class="link-column">  
-          <h4>Employers</h4>  
-          <a href="#">Post a Job</a>  
-          <a href="#">Browse Candidates</a>  
-          <a href="#">Employers Dashboard</a>  
-          <a href="#">Applications</a>  
-        </div>  
-        <div class="link-column">  
-          <h4>Support</h4>  
-          <a href="#">FAQs</a>  
-          <a href="#">Privacy Policy</a>  
-          <a href="#">Terms & Conditions</a>  
-        </div>  
-      </div>  
-    </div>  
-    <div class="footer-bottom">  
-      <p>&copy; 2025 Jobportal. All rights reserved.</p>  
-      <div class="social-icons">  
-        <a href="#">Facebook</a>  
-        <a href="#">YouTube</a>  
-        <a href="#">Twitter</a>  
-      </div>  
-    </div>  
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="logo-and-contact">
+        <p class="logo">SKEELPORTAL</p>
+        <p>Call now: <a href="tel:+3195550115">(319) 555-0115</a></p>
+        <p>6391 Elgin St. Celina, Delaware 10299, New York, USA</p>
+      </div>
+      <div class="links">
+        <div class="link-column">
+          <h4>Quick Links</h4>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#">Pricing</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="link-column">
+          <h4>Candidate</h4>
+          <a href="#">Browse Jobs</a>
+          <a href="#">Browse Employers</a>
+          <a href="#">Candidate Dashboard</a>
+          <a href="#">Saved Jobs</a>
+        </div>
+        <div class="link-column">
+          <h4>Employers</h4>
+          <a href="#">Post a Job</a>
+          <a href="#">Browse Candidates</a>
+          <a href="#">Employers Dashboard</a>
+          <a href="#">Applications</a>
+        </div>
+        <div class="link-column">
+          <h4>Support</h4>
+          <a href="#">FAQs</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Jobportal. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
   </footer>
-  </div>
-  
+</div>

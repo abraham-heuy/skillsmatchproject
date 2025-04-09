@@ -1,180 +1,245 @@
-.container {  
-    font-family: Arial, sans-serif;  
-  
-    margin: 0 auto;  
-    padding: 20px;  
-    background-color: white;  
-  }  
-  
-  .header nav {  
-    display: flex;  
-    justify-content: space-between;  
-    margin-bottom: 20px;  
-  }  
-  
-  .header nav a {  
-    text-decoration: none;  
-    color: #333;  
-  }  
-  
-  .about {  
-    display: flex;  
-    flex-direction: row;  
-    align-items: center;  
-    margin-bottom: 40px;  
-  }  
-  
-  .about-content {  
-    flex: 1;  
-    margin-right: 20px;  
-  } 
-  .content{
-    display: flex;  
-    flex-direction: row;  
-    align-items: center;  
-    margin-bottom: 40px;
-    gap: 40px;
-  } 
-  .content p{
-    width: 70%;
+.container {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+}
 
+.header {
+  background-color: #1e2a3a; /* Dark blue background for header */
+  padding: 20px 0;
+}
+
+.header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header .logo {
+  font-size: 28px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.header nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-left: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.header nav a:hover {
+  background-color: #007bff; /* Highlight color on hover */
+  border-radius: 5px;
+}
+
+.about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.about-content {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.about-content h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.content p {
+  width: 60%;
+  line-height: 1.6;
+  color: #555;
+  font-size: 16px;
+  text-align: justify;
+}
+
+.about-image {
+  width: 40%;
+  height: 380px;
+  background-image: url("../assets/images/pexels-fauxels-3184465.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact {
+  margin-bottom: 40px;
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.contact h3 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+form input,
+form textarea {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content .logo-and-contact {
+  flex: 1;
+}
+
+.footer .logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.links {
+  display: flex;
+}
+
+.link-column {
+  margin-right: 40px;
+}
+
+.link-column h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.link-column a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.link-column a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.social-icons a {
+  color: #fff;
+  margin: 0 12px;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .about {
+      flex-direction: column;
   }
-  
-  .about h2 {  
-    font-size: 24px;  
-  }  
-  
-  .about-image {  
-    background-image: url("../assets/images/pexels-fauxels-3184465.jpg"); /* Ensure path is correct */  
-    width: 40%; /* Adjust based on actual image size */  
-    height: 370px; 
-    background-size: cover;  
-    background-position: center;  
-    border-radius: 8px;  
-  }  
-  
-  .contact {  
-    margin-bottom: 40px;  
-  }  
-  
-  .contact h3 {  
-    text-align: center; /* Align title to the left */  
-    margin-bottom: 20px; /* Space below the title */  
-  }  
-  
-  form {  
-    display: flex;  
-    flex-direction: column;  
-    max-width: 500px; /* Set max width to constrain form width */  
-    padding: 20px; /* Add padding for the form */  
-    border: 1px solid #ddd; /* Light border around the form */  
-    border-radius: 10px; /* Rounded corners */  
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */  
-    background-color: #f9f9f9; /* Light background for the form */  
-    margin: 0 auto; /* Center form within its container */  
-  }  
-  
-  form label {  
-    margin-bottom: 5px;  
-    font-weight: bold; /* Bold font for labels */  
-  }  
-  
-  form input,  
-  form textarea {  
-    margin-bottom: 15px;  
-    padding: 10px;  
-    border: 1px solid #ddd;  
-    border-radius: 5px; /* Slightly more rounded corners */  
-    transition: border-color 0.3s; /* Smooth transition for focus effect */  
-  }  
-  
-  form input:focus,  
-  form textarea:focus {  
-    border-color: #007bff; /* Change border color on focus */  
-    outline: none; /* Remove outline */  
-  }  
-  
-  button {  
-    padding: 10px;  
-    background-color: #007bff;  
-    color: white;  
-    border: none;  
-    border-radius: 5px; /* Softer rounded button */  
-    cursor: pointer;  
-    margin-top: 10px; /* Space above the button */  
-    font-weight: bold; /* Bold text for button */  
-  }  
-  
-  button:hover {  
-    background-color: #0056b3; /* Darker blue on hover */  
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow on hover for effect */  
-  }  
-  
-  /* Optional: Styling for the overall contact section */  
-  .contact {  
-    text-align: left; /* Align text to the left */  
-    padding: 20px; /* Padding around the section */  
-    background-color: #f2f2f2; /* Light gray background for contrast */  
-    border-radius: 10px; /* Rounded corners for the section */  
-  } 
-  
-  .footer {  
-    background-color: #000; /* Dark background */  
-    color: #fff; /* White text color */  
-    padding: 40px 20px; /* Padding for the footer */  
-  }  
-  
-  .footer-content {  
-    display: flex;  
-    justify-content: space-between; /* Space between content sections */  
-    max-width: 1200px; /* Maximum width of footer content */  
-    margin: 0 auto; /* Center the footer */  
-  }  
-  
-  .logo-and-contact {  
-    flex: 1; /* Take up one section */  
-  }  
-  
-  .logo {  
-    font-weight: bold;  
-    font-size: 24px; /* Larger font for logo */  
-    margin-bottom: 10px; /* Space below the logo */  
-  }  
-  
-  .links {  
-    display: flex; /* Flexbox for link columns */  
-  }  
-  
-  .link-column {  
-    margin-right: 40px; /* Spacing between link columns */  
-  }  
-  
-  .link-column h4 {  
-    font-weight: bold; /* Bold headings */  
-    margin-bottom: 10px; /* Space below headings */  
-  }  
-  
-  .link-column a {  
-    color: #fff; /* White text for links */  
-    text-decoration: none; /* Remove underline */  
-    display: block; /* Block display for links */  
-    margin-bottom: 5px; /* Space below links */  
-  }  
-  
-  .link-column a:hover {  
-    text-decoration: underline; /* Underline on hover */  
-  }  
-  
-  .footer-bottom {  
-    text-align: center; /* Center text */  
-    margin-top: 20px; /* Spacing above bottom text */  
-  }  
-  
-  .social-icons a {  
-    color: #fff; /* White text for social icons */  
-    margin: 0 10px; /* Space between icons */  
-  }  
-  
-  .social-icons a:hover {  
-    text-decoration: underline; /* Underline on hover */  
+
+  .content {
+      flex-direction: column;
+      gap: 20px;
   }
+
+  .about-image {
+      width: 100%;
+      height: 250px;
+  }
+
+  .footer-content {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .link-column {
+      margin-bottom: 20px;
+  }
+
+  .social-icons {
+      margin-top: 20px;
+  }
+}
