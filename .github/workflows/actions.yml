@@ -1,38 +1,37 @@
 name: CI Pipeline
 
-# The workflow will run when code is pushed to the repository
 on:
   push:
     branches:
-      - master  # or 'master', depending on your branch name
+      - main
   pull_request:
     branches:
-      - main  # This means it will also run for pull requests to the 'main' branch
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # This tells GitHub Actions to use a Linux environment
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2  # This step gets your code from GitHub to run the pipeline
+      uses: actions/checkout@v2
     
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'  # Set the Node.js version for the Angular app
+        node-version: '14'
     
     - name: Install dependencies
-      run: npm install  # This installs the packages needed for the Angular app
+      run: npm install
     
     - name: Run tests
-      run: npm run test -- --watch=false --browsers=ChromeHeadless  # This runs your Angular app tests
+      run: npm run test -- --watch=false --browsers=ChromeHeadless
     
     - name: Build the app
-      run: npm run build  # This creates the production-ready version of your app
+      run: npm run build
     
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # Updated to v3
       with:
         name: build
-        path: dist/  # This saves your built app for later steps or deployment
+        path: dist/
