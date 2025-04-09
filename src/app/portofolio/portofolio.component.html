@@ -1,0 +1,65 @@
+<div class="dashboard-container">
+    <!-- Left Menu -->
+    <nav class="menu">
+      <div class="menu-item" [class.active]="selectedSection === 'Projects'" (click)="toggleSection('Projects')">
+        Projects
+      </div>
+      <div class="menu-item" [class.active]="selectedSection === 'Experience'" (click)="toggleSection('Experience')">
+        Experience
+      </div>
+      <div class="menu-item" [class.active]="selectedSection === 'Education'" (click)="toggleSection('Education')">
+        Education 
+      </div>
+      <div class="menu-item" [class.active]="selectedSection === 'Certifications'" (click)="toggleSection('Certifications')">
+        Certifications
+      </div>
+      <div class="menu-item" [class.active]="selectedSection === 'References'" (click)="toggleSection('References')">
+        References
+      </div>
+    </nav>
+  
+    <!-- Right Content Area -->
+    <div class="content-area">
+      <!-- User Projects Section -->
+      <div *ngIf="selectedSection === 'Projects'" class="section projects">
+        <div class="project-card">
+          <div class="project-image">Project Image</div>
+          <div class="project-description">
+            E-commerce Platform<br />
+            React, Node.js, Mongo DB
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">Project Image</div>
+          <div class="project-description">
+            Portfolio Website<br />
+            Angular, Firebase, Tailwind
+          </div>
+        </div>
+        <div class="project-card add-new">
+          +Add New Project
+        </div>
+      </div>
+  
+      <!-- Experience Section -->
+      <div *ngIf="selectedSection === 'Experience'" class="section experience">
+        <p>Content for Experience section... </p>
+      </div>
+  
+      <!-- Education Section -->
+      <div *ngIf="selectedSection === 'Education'" class="section education">
+        <p>Content for Education section... </p>
+      </div>
+  
+      <!-- Certifications Section -->
+      <div *ngIf="selectedSection === 'Certifications'" class="section certifications">
+        <p>Content for Certifications section... </p>
+      </div>
+  
+      <!-- References Section -->
+      <div *ngIf="selectedSection === 'References'" class="section references">
+        <p>Content for References section... </p>
+      </div>
+    </div>
+  </div>
+  

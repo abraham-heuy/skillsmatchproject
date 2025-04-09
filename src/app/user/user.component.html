@@ -1,0 +1,162 @@
+<div class="dashboard-container">
+    <!-- Header Section -->
+    <nav class="navbar">
+      <div class="logo">SKEELPORTAL</div>
+  
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Find Job</a>
+        <a href="#">Dashboard</a>
+      </div>
+  
+      <div class="profile-section">
+        <div class="imagecontent" (click)="toggleDropdown()" aria-label="Accountmenu"></div>
+  
+        <!-- Dropdown Menu: Always Rendered -->
+        <div class="dropdown-menu" [class.visible]="dropdownVisible">
+          <a href="#">PROFILE</a>
+          <a href="#">ACCOUNT</a>
+          <a href="#">ABOUT</a>
+          <a href="#">LOGOUT</a>
+        </div>
+      </div>
+    </nav>
+  
+    <!-- Search Bar Section -->
+    <div class="search-bar">
+      <input type="text" placeholder="Job title, keyword, company" />
+      <select>
+        <option value="Kenya">Kenya</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+      </select>
+      <button>Search</button>
+    </div>
+  
+    <!-- Content Section -->
+    <div class="dashboard-content">
+      <h2>Welcome to Your Dashboard</h2>
+      <p>Here are the jobs posted and available matches.</p>
+  
+      <!-- Job Listings -->
+      <div class="job-listings">
+        <div class="job-card">
+          <h3>Technical Support Specialist</h3>
+          <p>Company: Microsoft</p>
+          <p>Location: Remote</p>
+          <p>Salary: $70,000 - $90,000</p>
+          <a href="#" class="view-job-btn">View Details</a>
+        </div>
+  
+        <div class="job-card">
+          <h3>Senior UX Designer</h3>
+          <p>Company: Facebook</p>
+          <p>Location: San Francisco, CA</p>
+          <p>Salary: $100,000 - $150,000</p>
+          <a href="#" class="view-job-btn">View Details</a>
+        </div>
+  
+        <div class="job-card">
+          <h3>Marketing Manager</h3>
+          <p>Company: Google</p>
+          <p>Location: New York, NY</p>
+          <p>Salary: $80,000 - $120,000</p>
+          <a href="#" class="view-job-btn">View Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="notifications-container">
+        <!-- Left Column -->
+        <div class="column left-column">
+          <div class="notification-box">
+            <h3>EMAIL</h3>
+            <p>Receive Notifications in your inbox.</p>
+          </div>
+          <div class="notification-box">
+            <h3>SMS</h3>
+            <p>Get text alerts and urgent updates into your phone.</p>
+          </div>
+        </div>
+      
+        <!-- Middle Column -->
+        <div class="column middle-column">
+          <div class="notification-box">
+            <h3>Interview Invitation</h3>
+            <p>Senior Developer at TechCorp</p>
+            <p>April 10, 2025 2:00 PM</p>
+          </div>
+          <div class="notification-box">
+            <h3>Interview Confirmed</h3>
+            <p>Senior Developer at TechCorp</p>
+            <p>April 10, 2025 2:00 PM</p>
+          </div>
+          <div class="notification-box">
+            <h3>Rescheduling Request</h3>
+            <p>Senior Developer at TechCorp</p>
+            <p>April 10, 2025 2:00 PM</p>
+          </div>
+        </div>
+      
+        <!-- Right Column -->
+        <div class="column right-column">
+          <div class="notification-box">
+            <h3>CALENDAR</h3>
+            <p>Do you want to sync your calendar to view your schedule?</p>
+          </div>
+          <div class="notification-box">
+            <h3>Reminders</h3>
+            <p>Set reminders so that you do not miss any update!</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer Section -->
+  <footer class="footer">  
+    <div class="footer-content">  
+      <div class="logo-and-contact">  
+        <p class="logo">SKEELSPORTAL</p>  
+        <p>Call now: <a href="tel:+3195550115">(319) 555-0115</a></p>  
+        <p>6391 Elgin St. Celina, Delaware 10299, New York, United States of America</p>  
+      </div>  
+      <div class="links">  
+        <div class="link-column">  
+          <h4>Quick Link</h4>  
+          <a href="#">About</a>  
+          <a href="#">Contact</a>  
+          <a href="#">Pricing</a>  
+          <a href="#">Blog</a>  
+        </div>  
+        <div class="link-column">  
+          <h4>Candidate</h4>  
+          <a href="#">Browse Jobs</a>  
+          <a href="#">Browse Employers</a>  
+          <a href="#">Candidate Dashboard</a>  
+          <a href="#">Saved Jobs</a>  
+        </div>  
+        
+        <div class="link-column">  
+          <h4>Employers</h4>  
+          <a href="#">Post a Job</a>  
+          <a href="#">Browse Candidates</a>  
+          <a href="#">Employers Dashboard</a>  
+          <a href="#">Applications</a>  
+        </div>  
+        <div class="link-column">  
+          <h4>Support</h4>  
+          <a href="#">FAQs</a>  
+          <a href="#">Privacy Policy</a>  
+          <a href="#">Terms & Conditions</a>  
+        </div>  
+      </div>  
+    </div>  
+    <div class="footer-bottom">  
+      <p>&copy; 2025 Jobportal. All rights reserved.</p>  
+      <div class="social-icons">  
+        <a href="#">Facebook</a>  
+        <a href="#">YouTube</a>  
+        <a href="#">Twitter</a>  
+      </div>  
+    </div>  
+  </footer>
+  </div>
+  

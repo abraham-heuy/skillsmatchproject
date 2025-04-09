@@ -1,0 +1,74 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            
+            <!-- LOGIN FORM -->
+            <div *ngIf="isLoginForm">
+                <span class="login100-form-title">Account Login</span>
+
+                <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)">
+                    <div class="wrap-input100">
+                        <span class="icon-input"><i class="fa fa-user"></i></span>
+                        <input class="input100" type="text" name="email" [(ngModel)]="newEmail" placeholder="User Email" required>
+                    </div>
+                    
+
+                    <div class="wrap-input100">
+
+                        <span class="icon-input"><i class="fa fa-lock"></i></span>
+                        <input class="input100" type="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">Login</button>
+                    </div>
+
+                    <div class="text-center">
+                        <a (click)="toggleForm()" style="cursor: pointer;">Create an Account</a>
+                    </div>
+                </form>
+            </div>
+
+        <div *ngIf="!isLoginForm">
+                <span class="login100-form-title">Create Account</span>
+
+                <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister(registerForm)">
+                    <div class="wrap-input100">
+                        <span class="icon-input"><i class="fa fa-user"></i></span>
+                        <input class="input100" type="text" name="newName" [(ngModel)]="newName" placeholder="User name" required>
+                    </div>
+
+                    <div class="wrap-input100">
+                        <span class="icon-input"><i class="fa fa-envelope"></i></span>
+                        <input class="input100" type="email" name="email" [(ngModel)]="newEmail" required email  placeholder="Email">
+                    </div>
+                    <div class="wrap-input100">
+                        
+                        <span class="icon-input"><i class="fa fa-lock"></i></span>
+                        <input class="input100" type="password" name="newPassword" [(ngModel)]="newPassword" placeholder="Password" required>
+                    </div>
+
+                    <div class="wrap-input100">
+                        <span class="icon-input"><i class="fa fa-lock"></i></span>
+                        <input class="input100" type="password" name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+  
+                    
+                    <p *ngIf="passwordMismatch" style="color: red; font-size: 14px; text-align: center;">
+                        Passwords do not match!
+                    </p>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">Register</button>
+                    </div>
+
+                    <div class="text-center">
+                        <a (click)="toggleForm()" style="cursor: pointer;">Back to Login</a>
+                    </div>
+                </form>
+            </div> 
+           
+
+        </div>
+    </div>
+</div>
