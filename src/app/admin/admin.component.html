@@ -1,120 +1,152 @@
 <div class="dashboard-container">
-    <!-- Header Section -->
-    <header class="header">
-      <nav class="navbar">
-        <div class="logo">SKEELPORTAL</div>
-        <div class="profile-section">
-          <div class="profile-icon" aria-label="Account Menu"></div>
+  <!-- Header Section -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo">SKEELPORTAL</div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+      </div>
+      <div class="profile-section">
+        <div class="profile-icon" aria-label="Account Menu"></div>
+      </div>
+     
+    </nav>
+  </header>
+
+  <!-- Layout with Sidebar and Main Content -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-circle">S</div>
+        <span class="portal-name">SKEELPORTAL</span>
+      </div>
+      <ul class="menu">
+        <li
+          [class.active]="selectedSection === 'ManageUsers'"
+          (click)="toggleSection('ManageUsers')"
+        >
+          Manage Users
+        </li>
+        <li
+          [class.active]="selectedSection === 'ViewData'"
+          (click)="toggleSection('ViewData')"
+        >
+          View Data
+        </li>
+        <li
+          [class.active]="selectedSection === 'ViewPerformance'"
+          (click)="toggleSection('ViewPerformance')"
+        >
+          View Performance
+        </li>
+        <li
+          [class.active]="selectedSection === 'MostReviewedJobs'"
+          (click)="toggleSection('MostReviewedJobs')"
+        >
+          Most Reviewed Jobs
+        </li>
+        <li
+          [class.active]="selectedSection === 'HiringAnalytics'"
+          (click)="toggleSection('HiringAnalytics')"
+        >
+          Hiring Analytics
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Manage Users Section -->
+      <div *ngIf="selectedSection === 'ManageUsers'" class="content-section">
+        <h2>Manage Users</h2>
+        <div *ngFor="let user of dummyUsers" class="user-card">
+          <p><strong>{{ user.name }}</strong></p>
+          <p>Email: {{ user.email }}</p>
+          <p>Role: {{ user.expertise }}</p>
+          <p>Location: {{ user.location }}</p>
+          <button class="action-btn">Ban User</button>
+          <button class="action-btn">Remove User</button>
         </div>
-        <div class="nav-links">
-          <a href="#">Home</a>
+      </div>
+
+      <!-- View Data Section -->
+      <div *ngIf="selectedSection === 'ViewData'" class="content-section">
+        <h2>View Data</h2>
+        <div class="data-card">
+          <p><strong>{{ dummyStats.liveJobs }}</strong></p>
+          <p>Live Jobs</p>
         </div>
-      </nav>
-    </header>
+        <div class="data-card">
+          <p><strong>{{ dummyStats.candidates }}</strong></p>
+          <p>Candidates</p>
+        </div>
+        <div class="data-card">
+          <p><strong>{{ dummyStats.newJobs }}</strong></p>
+          <p>New Jobs</p>
+        </div>
+        <div class="data-card">
+          <p><strong>{{ dummyStats.companies }}</strong></p>
+          <p>Companies</p>
+        </div>
+      </div>
+
+    <!-- View Performance Section -->
+<div *ngIf="selectedSection === 'ViewPerformance'" class="content-section">
+  <h2>View Performance</h2>
   
-    <!-- Layout with Sidebar and Main Content -->
-    <div class="layout">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="sidebar-header">
-          <div class="logo-circle">S</div>
-          <span class="portal-name">SKEELPORTAL</span>
-        </div>
-        <ul class="menu">
-          <li
-            [class.active]="selectedSection === 'ManageUsers'"
-            (click)="toggleSection('ManageUsers')"
-          >
-            Manage Users
-          </li>
-          <li
-            [class.active]="selectedSection === 'ViewData'"
-            (click)="toggleSection('ViewData')"
-          >
-            View Data
-          </li>
-          <li
-            [class.active]="selectedSection === 'ViewPerformance'"
-            (click)="toggleSection('ViewPerformance')"
-          >
-            View Performance
-          </li>
-          <li
-            [class.active]="selectedSection === 'HiringAnalytics'"
-            (click)="toggleSection('HiringAnalytics')"
-          >
-            Hiring Analytics
-          </li>
-        </ul>
-      </aside>
-  
-      <!-- Main Content Section -->
-      <main class="main-content">
-        <!-- Manage Users Section -->
-        <div *ngIf="selectedSection === 'ManageUsers'" class="content-section">
-          <h2>Manage Users</h2>
-          <div class="user-card">
-            <p><strong>John Doe</strong></p>
-            <p>Email: johndoe&#64;example.com</p>
-            <p>Role: React Expert</p>
-            <p>Location: Dhaka, Bangladesh</p>
-          </div>
-          <div class="user-card">
-            <p><strong>Jane Smith</strong></p>
-            <p>Email: janesmith&#64;example.com</p>
-            <p>Role: Angular Expert</p>
-            <p>Location: Nairobi, Kenya</p>
-          </div>
-        </div>
-  
-        <!-- View Data Section -->
-        <div *ngIf="selectedSection === 'ViewData'" class="content-section">
-          <h2>View Data</h2>
-          <div class="data-card">
-            <p><strong>1,75,324</strong></p>
-            <p>Live Jobs</p>
-          </div>
-          <div class="data-card">
-            <p><strong>38,471,54</strong></p>
-            <p>Candidates</p>
-          </div>
-          <div class="data-card">
-            <p><strong>7,532</strong></p>
-            <p>New Jobs</p>
-          </div>
-          <div class="data-card">
-            <p><strong>97,534</strong></p>
-            <p>Companies</p>
-          </div>
-        </div>
-  
-        <!-- View Performance Section -->
-        <div *ngIf="selectedSection === 'ViewPerformance'" class="content-section">
-          <h2>View Performance</h2>
-          <div class="performance-card">
-            <p><strong>85%</strong></p>
-            <p>Users</p>
-          </div>
-          <div class="performance-card">
-            <p><strong>92%</strong></p>
-            <p>Security</p>
-          </div>
-          <div class="performance-card">
-            <p><strong>85%</strong></p>
-            <p>Chatbot</p>
-          </div>
-          
-        </div>
-  
-        <!-- Hiring Analytics Section -->
-        <div *ngIf="selectedSection === 'HiringAnalytics'" class="content-section">
-          <h2>Hiring Analytics</h2>
-          <div class="analytics-chart">
-            <p><strong>2,568 Applications</strong></p>
-            <p>Applications from 1-6 April, 2025</p>
-          </div>
-        </div>
-      </main>
-    </div>
+  <!-- Performance Stats Cards -->
+  <div class="performance-card">
+    <p><strong>{{ performance.recruiter }}%</strong></p>
+    <p>Recruiter</p>
   </div>
-  
+  <div class="performance-card">
+    <p><strong>{{ performance.users }}%</strong></p>
+    <p>Users</p>
+  </div>
+  <div class="performance-card">
+    <p><strong>{{ performance.chatbot }}%</strong></p>
+    <p>Chatbot</p>
+  </div>
+
+  <!-- Pie Chart to display performance -->
+  <div class="chart-containerr">
+    <canvas baseChart
+            [data]="pieChartData"
+            [labels]="pieChartData.labels"
+            [options]="pieChartOptions"
+            chartType="'pie'">
+    </canvas>
+  </div>
+</div>
+
+
+
+
+      <!-- Most Reviewed Jobs Section -->
+      <div *ngIf="selectedSection === 'MostReviewedJobs'" class="content-section">
+        <h2>Most Reviewed Jobs</h2>
+        <div *ngFor="let job of mostReviewedJobs" class="job-card">
+          <p><strong>{{ job.title }}</strong></p>
+          <p>Views: {{ job.views }}</p>
+        </div>
+      </div>
+
+      <!-- Hiring Analytics Section -->
+      <div *ngIf="selectedSection === 'HiringAnalytics'">
+        <h2>Hiring Analytics</h2>
+        <div class="chart-container">
+          <canvas baseChart
+                  [data]="barChartData"
+                  [options]="barChartOptions"
+                  chartType="bar"> 
+          </canvas>
+        </div>
+        <p><strong>Dummy Data: 2,500 Applications</strong></p>
+        <p>Growth: 20% this month</p>
+      </div>
+      
+      
+    </main>
+  </div>
+</div>

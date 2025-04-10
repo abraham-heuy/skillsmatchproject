@@ -6,7 +6,7 @@
 }
 
 .header {
-  background-color: #1e2a3a; /* Dark blue background for header */
+  background-color: #007bff; /* Dark blue background for header */
   padding: 20px 0;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .header nav a:hover {
-  background-color: #007bff; /* Highlight color on hover */
+  background-color: #c3c8cc; /* Highlight color on hover */
   border-radius: 5px;
 }
 

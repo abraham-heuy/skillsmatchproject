@@ -10,10 +10,10 @@
           
           <!-- Dropdown Menu: Always Rendered -->
           <div class="dropdown-menu" [class.visible]="dropdownVisible">
-            <a routerLink="/portfolio">PROFILE</a>
-            <a href="#">CHAT AI</a>
+            <a routerLink="/r-portfolio">PROFILE</a>
+            <a (click)="toggleChatbot()">CHAT AI</a> 
             <a routerLink="#">LOGOUT</a>
-          </div>
+          </div> 
       </div>
     </div>
 
@@ -82,6 +82,9 @@
         <p>Interview and hire the shortlisted candidates.</p>
       </div>
     </div>
+    <button class="chatbot-float-btn" (click)="toggleChatbot()">
+      💬 Chat 
+    </button>
   </div>
 
   <!-- Footer Section -->
@@ -132,4 +135,22 @@
       </div>
     </div>
   </footer>
+</div>
+
+
+<!-- chat bot popup 🔥 -->
+<!-- Chatbot Popup -->
+<div class="chatbot-popup" [class.visible]="chatbotVisible">
+  <div class="chatbot-header">
+    <h3>🤖 Ask SKEELBot</h3>
+    <button class="chatbot-close-btn" (click)="toggleChatbot()">✖</button>
+  </div>
+  <div class="chatbot-body">
+    <div class="chatbot-message bot">Hello! How can I assist you today?</div>
+    <!-- Future messages can go here -->
+  </div>
+  <div class="chatbot-input">
+    <input type="text" placeholder="Type your message..." />
+    <button>Send</button>
+  </div>
 </div>

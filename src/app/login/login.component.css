@@ -11,6 +11,11 @@
     background-size: cover;
     font-family: 'Poppins', sans-serif;
   }
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
   
   /* Centering the form */
   .container-login100 {

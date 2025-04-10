@@ -1,0 +1,168 @@
+<!-- Top Navigation Bar -->
+<header class="top-navbar">
+    <div class="nav-left">
+      <button class="back-btn" (click)="goBack()">← Back</button>
+    </div>
+    <div class="nav-right">
+      <div class="profile-pic"></div>
+      <span class="profile-name">Recruiter Name</span>
+    </div>
+  </header>
+  
+  <div class="dashboard-container">
+    <!-- Left Menu -->
+    <nav class="menu">
+      <div class="menu-header">Recruiter Panel</div>
+  
+      <div class="menu-item" [class.active]="selectedSection === 'PostJob'" (click)="toggleSection('PostJob')">
+        📢 Post Job
+      </div>
+  
+      <div class="menu-item" [class.active]="selectedSection === 'MatchedCandidates'" (click)="toggleSection('MatchedCandidates')">
+        🧠 Matched Candidates
+      </div>
+  
+      <div class="menu-item" [class.active]="selectedSection === 'QueryAI'" (click)="toggleSection('QueryAI')">
+        🤖 AI Assistant
+      </div>
+  
+      <div class="menu-item" [class.active]="selectedSection === 'Interviews'" (click)="toggleSection('Interviews')">
+        📅 Schedule Interviews
+      </div>
+  
+      <div class="menu-item" [class.active]="selectedSection === 'Analytics'" (click)="toggleSection('Analytics')">
+        📊 Hiring Analytics
+      </div>
+    </nav>
+  
+    <!-- Right Content Area -->
+    <div class="content-area">
+      <!-- Post Job Section -->
+      <div *ngIf="selectedSection === 'PostJob'" class="section post-job">
+        <div class="section-header">
+          Post a Job Opening
+          <button class="btn-edit" (click)="openPopup('PostJob')">+ New Job</button>
+        </div>
+        <div class="card" *ngFor="let job of jobPosts">
+          <h4>{{ job.title }}</h4>
+          <p><strong>Skills:</strong> {{ job.skills }}</p>
+          <p>{{ job.description }}</p>
+        </div>
+      </div>
+  
+      <!-- AI Matched Candidates -->
+      <div *ngIf="selectedSection === 'MatchedCandidates'" class="section matched-candidates">
+        <div class="section-header">AI Matched Candidates</div>
+        <div class="card" *ngFor="let candidate of matchedCandidates">
+          <h4>{{ candidate.name }}</h4>
+          <p><strong>Skills:</strong> {{ candidate.skills.join(', ') }}</p>
+          <button class="btn-small">View Profile</button>
+        </div>
+      </div>
+  
+  <!-- AI Chatbot Section -->
+<div *ngIf="selectedSection === 'QueryAI'" class="section ai-chat">
+  <div class="chatbot-popup visible">
+    <div class="chatbot-header">
+      <h3>🤖 Ask SKEELBot</h3>
+      <button class="chatbot-close-btn" (click)="toggleSection('')">✖</button>
+    </div>
+    <div class="chatbot-body">
+      <div class="chatbot-message bot">Hello! How can I assist you today?</div>
+      <!-- More messages can be appended here -->
+      <div *ngIf="aiResponse" class="chatbot-message bot">{{ aiResponse }}</div>
+    </div>
+    <div class="chatbot-input">
+      <input [(ngModel)]="userQuery" type="text" placeholder="Type your message..." />
+      <button (click)="sendQuery()">Send</button>
+    </div>
+  </div>
+</div>
+
+  
+   <!-- Schedule Interviews Section with Calendar -->
+<div *ngIf="selectedSection === 'Interviews'" class="section schedule-interviews">
+  <div class="section-header">
+    Schedule Interviews
+    <button class="btn-edit" (click)="openPopup('Interviews')">+ New Interview</button>
+  </div>
+  
+  <!-- Calendar for Selecting Dates -->
+  <div class="calendar-container">
+    <full-calendar [options]="calendarOptions" [events]="calendarEvents" (dateClick)="onDateClick($event)"></full-calendar>
+
+  </div>
+
+  <!-- Interview Cards Displayed Below the Calendar -->
+  <div class="card" *ngFor="let interview of interviews">
+    <h4>{{ interview.candidate }}</h4>
+    <p><strong>Date:</strong> {{ interview.date }} | <strong>Time:</strong> {{ interview.time }}</p>
+    <p><strong>Mode:</strong> {{ interview.mode }}</p>
+  </div>
+  
+  <!-- Interview Details Popup (Hidden by Default) -->
+  <div *ngIf="selectedInterview" class="popup">
+    <div class="popup-content">
+      <h3>{{ selectedInterview.candidate }}</h3>
+      <p><strong>Date:</strong> {{ selectedInterview.date }} | <strong>Time:</strong> {{ selectedInterview.time }}</p>
+      <p><strong>Mode:</strong> {{ selectedInterview.mode }}</p>
+      <button (click)="closePopup1()">Close</button>
+    </div>
+  </div>
+</div>
+
+  
+      <!-- Hiring Analytics -->
+      <!-- Hiring Analytics Section with Line Chart -->
+<div *ngIf="selectedSection === 'Analytics'" class="section analytics">
+  <div class="section-header">Hiring Analytics</div>
+
+  <!-- Hiring Analytics Card -->
+  <div class="card">
+    <p><strong>Total Candidates Reviewed:</strong> {{ analytics.reviewed }}</p>
+    <p><strong>Interviews Conducted:</strong> {{ analytics.interviewed }}</p>
+    <p><strong>Positions Filled:</strong> {{ analytics.filled }}</p>
+  </div>
+
+  <!-- Line Chart for Hiring Analytics -->
+  <div class="chart-container">
+    <canvas baseChart
+            [data]="lineChartData"
+            [options]="lineChartOptions"
+            chartType="line">
+    </canvas>
+  </div>
+</div>
+
+    </div>
+  </div>
+  
+  <!-- Popup Modal (use same modal styling as your portfolio) -->
+  <div class="modal" *ngIf="activePopup">
+    <div class="modal-content">
+      <span class="close-btn" (click)="closePopup()">&times;</span>
+      <h3>{{ activePopupTitle }}</h3>
+  
+      <!-- Post Job Form -->
+      <form *ngIf="activePopup === 'PostJob'" (submit)="submitJob($event)">
+        <input type="text" placeholder="Job Title" required />
+        <input type="text" placeholder="Required Skills (comma-separated)" required />
+        <textarea placeholder="Job Description" rows="3" required></textarea>
+        <button type="submit" class="btn-submit">Post Job</button>
+      </form>
+  
+      <!-- Interview Scheduling Form -->
+      <form *ngIf="activePopup === 'Interviews'" (submit)="submitInterview($event)">
+        <input type="text" placeholder="Candidate Name" required />
+        <input type="date" required />
+        <input type="time" required />
+        <select required>
+          <option value="">Select Mode</option>
+          <option>Online</option>
+          <option>Onsite</option>
+        </select>
+        <button type="submit" class="btn-submit">Schedule</button>
+      </form>
+    </div>
+  </div>
+  

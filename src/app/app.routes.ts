@@ -8,6 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { PortofolioComponent } from './portofolio/portofolio.component';
 import { WildcardComponent } from './wildcard/wildcard.component';
+import { RecruiterPortfolioComponent } from './recruiter-portfolio/recruiter-portfolio.component';
 
 export const routes: Routes = [
     { path: '', component: LandingpageComponent },  // Default route
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: 'portfolio', component: PortofolioComponent },
     { path: 'recruiter', component: RecruiterComponent },
     { path: 'user', component: UserComponent },
+    { path: 'r-portfolio', component: RecruiterPortfolioComponent },
     { path: 'work-profile', component: WorkProfileComponent },
     { path: '**', component: WildcardComponent }
 ];

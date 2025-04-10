@@ -2,71 +2,108 @@
     <div class="container-login100">
         <div class="wrap-login100">
             
-            <!-- LOGIN FORM -->
-            <div *ngIf="isLoginForm">
-                <span class="login100-form-title">Account Login</span>
-
-                <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)">
-                    <div class="wrap-input100">
-                        <span class="icon-input"><i class="fa fa-user"></i></span>
-                        <input class="input100" type="text" name="email" [(ngModel)]="newEmail" placeholder="User Email" required>
-                    </div>
+           <!-- LOGIN FORM -->
+           <div *ngIf="isLoginForm">
+            <span class="login100-form-title">Account Login</span>
+        
+            <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)">
+                <div class="wrap-input100">
+                    <span class="icon-input"><i class="fa fa-user"></i></span>
+                    <input class="input100" type="text" name="email" [(ngModel)]="newEmail" placeholder="User Email" required email #email="ngModel">
                     
-
-                    <div class="wrap-input100">
-
-                        <span class="icon-input"><i class="fa fa-lock"></i></span>
-                        <input class="input100" type="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+                    <!-- Display error if the email is invalid -->
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+                        <span *ngIf="email.errors?.['required']">Email is required</span>
+                        <span *ngIf="email.errors?.['email']">Invalid email address</span>
                     </div>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" type="submit">Login</button>
-                    </div>
-
-                    <div class="text-center">
-                        <a (click)="toggleForm()" style="cursor: pointer;">Create an Account</a>
-                    </div>
-                </form>
-            </div>
-
-        <div *ngIf="!isLoginForm">
-                <span class="login100-form-title">Create Account</span>
-
-                <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister(registerForm)">
-                    <div class="wrap-input100">
-                        <span class="icon-input"><i class="fa fa-user"></i></span>
-                        <input class="input100" type="text" name="newName" [(ngModel)]="newName" placeholder="User name" required>
-                    </div>
-
-                    <div class="wrap-input100">
-                        <span class="icon-input"><i class="fa fa-envelope"></i></span>
-                        <input class="input100" type="email" name="email" [(ngModel)]="newEmail" required email  placeholder="Email">
-                    </div>
-                    <div class="wrap-input100">
-                        
-                        <span class="icon-input"><i class="fa fa-lock"></i></span>
-                        <input class="input100" type="password" name="newPassword" [(ngModel)]="newPassword" placeholder="Password" required>
-                    </div>
-
-                    <div class="wrap-input100">
-                        <span class="icon-input"><i class="fa fa-lock"></i></span>
-                        <input class="input100" type="password" name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirm Password" required>
-                    </div>
-  
+                </div>
+        
+                <div class="wrap-input100">
+                    <span class="icon-input"><i class="fa fa-lock"></i></span>
+                    <input class="input100" type="password" name="password" [(ngModel)]="password" placeholder="Password" required #password="ngModel">
                     
-                    <p *ngIf="passwordMismatch" style="color: red; font-size: 14px; text-align: center;">
-                        Passwords do not match!
-                    </p>
-
-                    <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" type="submit">Register</button>
+                    <!-- Display error if the password is invalid -->
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+                        <span *ngIf="password.errors?.['required']">Password is required</span>
                     </div>
+                </div>
+        
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit" [disabled]="loginForm.invalid">Login</button>
+                </div>
+        
+                <div class="text-center">
+                    <a (click)="toggleForm()" style="cursor: pointer;">Create an Account</a>
+                </div>
+        
+                <!-- Forgot Password Link -->
+                <div class="text-center">
+                    <a href="/forgot-password" style="cursor: pointer; color: #a100ff;">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+        
 
-                    <div class="text-center">
-                        <a (click)="toggleForm()" style="cursor: pointer;">Back to Login</a>
-                    </div>
-                </form>
-            </div> 
+
+       <!-- Registration Form -->
+<div *ngIf="!isLoginForm">
+    <span class="login100-form-title">Create Account</span>
+
+    <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister(registerForm)">
+        <!-- Name Input -->
+        <div class="wrap-input100">
+            <span class="icon-input"><i class="fa fa-user"></i></span>
+            <input class="input100" type="text" name="newName" [(ngModel)]="newName" placeholder="User name" required>
+        </div>
+        <div *ngIf="registerForm.submitted && registerForm.controls['newName']?.invalid" class="error-message">
+            <p *ngIf="registerForm.controls['newName']?.errors?.['required']">Name is required.</p>
+        </div>
+
+        <!-- Email Input -->
+        <div class="wrap-input100">
+            <span class="icon-input"><i class="fa fa-envelope"></i></span>
+            <input class="input100" type="email" name="email" [(ngModel)]="newEmail" required email placeholder="Email">
+        </div>
+        <div *ngIf="registerForm.submitted && registerForm.controls['email']?.invalid" class="error-message">
+            <p *ngIf="registerForm.controls['email']?.errors?.['required']">Email is required.</p>
+            <p *ngIf="registerForm.controls['email']?.errors?.['email']">Please enter a valid email.</p>
+        </div>
+
+        <!-- Password Input -->
+        <div class="wrap-input100">
+            <span class="icon-input"><i class="fa fa-lock"></i></span>
+            <input class="input100" type="password" name="newPassword" [(ngModel)]="newPassword" placeholder="Password" required>
+        </div>
+        <div *ngIf="registerForm.submitted && registerForm.controls['newPassword']?.invalid" class="error-message">
+            <p *ngIf="registerForm.controls['newPassword']?.errors?.['required']">Password is required.</p>
+        </div>
+
+        <!-- Confirm Password Input -->
+        <div class="wrap-input100">
+            <span class="icon-input"><i class="fa fa-lock"></i></span>
+            <input class="input100" type="password" name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirm Password" required>
+        </div>
+        <div *ngIf="registerForm.submitted && registerForm.controls['confirmPassword']?.invalid" class="error-message">
+            <p *ngIf="registerForm.controls['confirmPassword']?.errors?.['required']">Confirm Password is required.</p>
+        </div>
+
+        <!-- Password Mismatch Error -->
+        <p *ngIf="passwordMismatch" style="color: red; font-size: 14px; text-align: center;">
+            Passwords do not match!
+        </p>
+
+        <!-- Submit Button -->
+        <div class="container-login100-form-btn">
+            <button class="login100-form-btn" type="submit">Register</button>
+        </div>
+
+        <!-- Link for switching form -->
+        <div class="text-center">
+            <a (click)="toggleForm()" style="cursor: pointer;">Back to Login</a>
+        </div>
+    </form>
+</div>
+
            
 
         </div>
