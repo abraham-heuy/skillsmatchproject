@@ -30,7 +30,8 @@ jobs:
 
     - name: Deploy to S3
       run: |
-        aws s3 sync ./dist/skillsmatch/ s3://$AWS_S3_BUCKET_NAME/ --delete --region YOUR_AWS_REGION
+        aws s3 sync ./dist/skillsmatch/ s3://$AWS_S3_BUCKET_NAME/ --delete --region ${AWS_REGION}
+
         echo "✅ Deployed to S3"
         echo "🌐 View your app at: http://${AWS_S3_BUCKET_NAME}.s3-website-${AWS_REGION}.amazonaws.com"
       env:
