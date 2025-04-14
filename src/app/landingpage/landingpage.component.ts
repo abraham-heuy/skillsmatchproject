@@ -22,6 +22,10 @@ onRegister(){
   localStorage.setItem('redirectTo', 'user');
   this.router.navigate(['/login']); 
 }
+onadmin(){
+  localStorage.setItem('redirectTo', 'admin');
+  this.router.navigate(['/login']); 
+}
   testimonials = [
     { quote: "This platform really helped me find my dream job!", author: "John Doe" },
     { quote: "Amazing experience! Super easy and fast.", author: "Jane Smith" },
