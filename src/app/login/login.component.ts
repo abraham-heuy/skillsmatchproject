@@ -21,13 +21,13 @@ export class LoginComponent {
   newPassword: string = '';
   confirmPassword: string = '';
   passwordMismatch: boolean = false;
-
+ 
   // Dummy users data (Added email to each user)
   users = [
     { id: 1, email: 'admin@example.com', username: 'admin', password: 'admin123', role: 'admin' },
     { id: 2, email: 'recruiter@example.com', username: 'recruiter', password: 'recruiter123', role: 'recruiter' },
     { id: 3, email: 'candidate@example.com', username: 'candidate', password: 'candidate123', role: 'candidate' },
-  ];
+  ]; 
 
   // Track the role for registration
   role: string = 'user';

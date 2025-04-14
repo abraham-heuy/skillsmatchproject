@@ -3,46 +3,32 @@
         <div class="wrap-login100">
             
            <!-- LOGIN FORM -->
-           <div *ngIf="isLoginForm">
+         <!-- LOGIN FORM -->
+         <div *ngIf="isLoginForm">
             <span class="login100-form-title">Account Login</span>
-        
+
             <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)">
                 <div class="wrap-input100">
                     <span class="icon-input"><i class="fa fa-user"></i></span>
-                    <input class="input100" type="text" name="email" [(ngModel)]="newEmail" placeholder="User Email" required email #email="ngModel">
-                    
-                    <!-- Display error if the email is invalid -->
-                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
-                        <span *ngIf="email.errors?.['required']">Email is required</span>
-                        <span *ngIf="email.errors?.['email']">Invalid email address</span>
-                    </div>
+                    <input class="input100" type="text" name="email" [(ngModel)]="newEmail" placeholder="User Email" required>
                 </div>
-        
+                
+
                 <div class="wrap-input100">
+
                     <span class="icon-input"><i class="fa fa-lock"></i></span>
-                    <input class="input100" type="password" name="password" [(ngModel)]="password" placeholder="Password" required #password="ngModel">
-                    
-                    <!-- Display error if the password is invalid -->
-                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
-                        <span *ngIf="password.errors?.['required']">Password is required</span>
-                    </div>
+                    <input class="input100" type="password" name="password" [(ngModel)]="password" placeholder="Password" required>
                 </div>
-        
+
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" type="submit" [disabled]="loginForm.invalid">Login</button>
+                    <button class="login100-form-btn" type="submit">Login</button>
                 </div>
-        
+
                 <div class="text-center">
                     <a (click)="toggleForm()" style="cursor: pointer;">Create an Account</a>
                 </div>
-        
-                <!-- Forgot Password Link -->
-                <div class="text-center">
-                    <a href="/forgot-password" style="cursor: pointer; color: #a100ff;">Forgot Password?</a>
-                </div>
             </form>
         </div>
-        
 
 
        <!-- Registration Form -->
