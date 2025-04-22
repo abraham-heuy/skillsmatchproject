@@ -18,49 +18,51 @@
     </div>
 
     <div class="breadcrumb">
-      <a href="#">Home</a> / <a href="#">Find Job</a> / <a href="#">Graphics & Design</a> / <span>Job Details</span>
-    </div>
+      <a href="#">Home</a> / <a href="#">Find Job Match</a>
+    </div>   
 
     <div class="search-section">
       <div class="search-logo">SKEELPORTAL</div>
-      <div class="search-bar">
-        <select>
-          <option>Kenya</option>
-          <!-- Add other options as needed -->
-        </select>
-        <input type="text" placeholder="Job title, keyword, company">
-        <button>FIND JOB MATCH</button>
+     
+    <div class="search-bar">
+      <input type="text" placeholder="Job title, Keyword..." [(ngModel)]="titleFilter" />
+      <input type="text" placeholder="Your Location" [(ngModel)]="locationFilter" />
+      <button (click)="loadFilteredCandidates()">Find a Job</button>
+    </div>
+    </div>
+  </div>
+  <div class="job-listings">
+    <div *ngIf="noCandidateFound" class="no-jobs-message">
+      <p>No jobs found matching your criteria.</p>
+    </div>
+    <div class="section-header">
+      <h2>LOOK FOR CANDIDATES THAT MATCH YOUR SPECIFICATIONS!</h2>
+    </div>
+  
+    <div class="job-grid">
+      <div class="job-card" *ngFor="let candidate of candidates">
+        <h3>{{ candidate.name }}</h3>
+        <p><strong>Email:</strong> {{ candidate.email }}</p>
+        <p><strong>Title:</strong> {{ candidate.title }}</p>
+        <p><strong>Description:</strong> {{ candidate.description }}</p>
+        <p><strong>Location:</strong> {{ candidate.location }}</p>
       </div>
     </div>
   </div>
-
   <div class="content2">
     <div class="image1"></div>
     <div class="content2-1">
       <h3>Job Posting</h3>
       <p>Looking for people to hire or assign projects? Get started to find the best match by posting the job.</p>
       <div class="buttons">
-        <button>Post a Job</button>
-        <button>Get a suggestion</button>
+        <button  routerLink="/r-portfolio">Post a Job</button>
+        <button  (click)="toggleChatbot()">Get a suggestion</button>
       </div>
     </div>
   </div>
 
   <!-- Job Listings Section -->
-  <div class="job-listings">
-    <div class="section-header">
-      <h2>JOBS YOU POSTED!</h2>
-      <button class="view-all-btn">View All</button>
-    </div>
-    <div class="job-grid">
-      <div class="job-card" *ngFor="let job of jobs">
-        <h3>{{ job.title }}</h3>
-        <p><strong>Company:</strong> {{ job.company }}</p>
-        <p><strong>Location:</strong> {{ job.location }}</p>
-        <p><strong>Salary:</strong> {{ job.salary }}</p>
-      </div>
-    </div>
-  </div>
+ 
 
   <!-- How It Works Section -->
   <div class="how-it-works">
@@ -145,12 +147,35 @@
     <h3>🤖 Ask SKEELBot</h3>
     <button class="chatbot-close-btn" (click)="toggleChatbot()">✖</button>
   </div>
+
   <div class="chatbot-body">
-    <div class="chatbot-message bot">Hello! How can I assist you today?</div>
-    <!-- Future messages can go here -->
+    <div *ngFor="let msg of chatMessages" class="chat-message" [ngClass]="{'user-message': msg.sender === 'user', 'bot-message': msg.sender === 'bot'}">
+
+      <!-- USER MESSAGE -->
+      <div *ngIf="msg.sender === 'user'" class="chat-bubble user-msg">
+        {{ msg.message }}
+      </div>
+
+      <!-- BOT TEXT REPLY -->
+      <div *ngIf="msg.sender === 'bot' && msg.type === 'text'" class="chat-bubble bot-msg">
+        <pre>{{ msg.message }}</pre>
+      </div>
+
+      <!-- BOT JOB CARDS -->
+      <div *ngIf="msg.sender === 'bot' && msg.type === 'jobList'" class="job-cards-container">
+        <div *ngFor="let job of msg.jobs" class="job-card">
+          <h4>🧑‍💼 {{ job.title }}</h4>
+          <p><strong>Company:</strong> {{ job.organization }}</p>
+          <p>{{ job.description }}</p>
+          <p>{{ job.reference_contact }}</p>
+        </div>
+      </div>
+
+    </div>
   </div>
+
   <div class="chatbot-input">
-    <input type="text" placeholder="Type your message..." />
-    <button>Send</button>
+    <input type="text" placeholder="Type your message..." [(ngModel)]="userMessage" />
+    <button (click)="sendMessage()">Send</button>
   </div>
 </div>

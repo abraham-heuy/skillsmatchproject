@@ -1,61 +1,68 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { PortfolioServiceService } from '@app/app/Services/portfolio/portfolio-service.service';
 
 @Component({
   selector: 'app-portofolio',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './portofolio.component.html',
-  styleUrls: ['./portofolio.component.css']
+  styleUrls: ['./portofolio.component.css'],
 })
 export class PortofolioComponent {
-
-
-  // top nav bar button 
-  goBack():void{
-     window.history.back();
+  // Top nav bar button
+  goBack(): void {
+    window.history.back();
   }
-  // selected sections code
-  selectedSection: string = 'Projects'; 
+
+  selectedSection: string = 'Projects';
   activePopup: string | null = null;
   activePopupTitle: string = '';
   uploadMethod: 'dragdrop' | 'browse' = 'dragdrop';
   uploadedCVFile: File | null = null;
   uploadedCVName: string | null = null;
+  formData: any = {};
 
-  projects = [
-    {
-      title: 'E-commerce Platform',
-      tech: 'React, Node.js, MongoDB',
-      summary: 'A full-stack web app for online shopping with secure authentication and payment integration.'
-    },
-    {
-      title: 'Portfolio Website',
-      tech: 'Angular, Firebase, Tailwind',
-      summary: 'A personal responsive portfolio to showcase projects, skills, and contact information.'
-    }
-  ];
+  // Store data per section
+  sectionsData: { [key: string]: any[] } = {
+    Projects: [],
+    Experience: [],
+    Education: [],
+    Certifications: [],
+    References: [],
+    CVUpload: [],
+  };
 
-  // 🔀 Navigation
-  toggleSection(section: string): void {
-    this.selectedSection = section;
+  constructor(private portfolioService: PortfolioServiceService) {}
+
+  ngOnInit(): void {
+    this.loadSection(this.selectedSection);
   }
 
-  // 🔓 Open popup
+  toggleSection(section: string): void {
+    this.selectedSection = section;
+    this.loadSection(section);
+  }
+
+  loadSection(section: string): void {
+    this.portfolioService.getSectionItems(section).subscribe((data: any) => {
+      this.sectionsData[section] = data;
+    });
+  }
+
   openPopup(section: string): void {
     this.activePopup = section;
-    this.uploadMethod = 'dragdrop'; // default tab
+    this.uploadMethod = 'dragdrop';
     this.activePopupTitle = `Add ${section}`;
   }
 
-  // ❌ Close popup
   closePopup(): void {
     this.activePopup = null;
     this.uploadedCVFile = null;
     this.uploadedCVName = null;
   }
 
-  // 🖱️ Drag-and-drop logic
   onDragOver(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
@@ -69,7 +76,6 @@ export class PortofolioComponent {
     }
   }
 
-  // 📁 File browse logic
   onFileSelect(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -78,7 +84,6 @@ export class PortofolioComponent {
     }
   }
 
-  // ⬆️ Submit CV
   submitCV(): void {
     if (this.uploadedCVFile) {
       console.log('Uploading CV:', this.uploadedCVFile.name);
@@ -89,29 +94,44 @@ export class PortofolioComponent {
     }
   }
 
-  // 📝 Section form submission handlers
-  submitProject(event: Event): void {
+  // Submit methods for each section
+  submitSectionData(event: Event, section: string): void {
     event.preventDefault();
-    this.closePopup();
+    const data = {
+      ...this.formData,
+      user_id: 3, // Set dynamic user_id here
+      section: section,
+    };
+
+    this.portfolioService.createSectionItem(section, data).subscribe(
+      (response) => {
+        console.log(`${section} added:`, response);
+        this.closePopup();
+      },
+      (error) => {
+        console.error(`Error adding ${section}:`, error);
+      }
+    );
   }
 
+  // Convenience methods for submit actions
   submitExperience(event: Event): void {
-    event.preventDefault();
-    this.closePopup();
+    this.submitSectionData(event, 'Experience');
+  }
+
+  submitProject(event: Event): void {
+    this.submitSectionData(event, 'Projects');
   }
 
   submitEducation(event: Event): void {
-    event.preventDefault();
-    this.closePopup();
+    this.submitSectionData(event, 'Education');
   }
 
   submitCertification(event: Event): void {
-    event.preventDefault();
-    this.closePopup();
+    this.submitSectionData(event, 'Certifications');
   }
 
   submitReference(event: Event): void {
-    event.preventDefault();
-    this.closePopup();
+    this.submitSectionData(event, 'References');
   }
 }

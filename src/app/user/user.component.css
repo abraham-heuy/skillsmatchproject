@@ -422,6 +422,15 @@
   .social-icons a:hover {  
     text-decoration: underline; /* Underline on hover */  
   }
-
+  .no-jobs-message {
+    padding: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
   
   

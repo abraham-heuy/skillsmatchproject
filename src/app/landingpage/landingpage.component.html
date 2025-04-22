@@ -19,12 +19,26 @@
     </p>
 
     <div class="search-bar">
-      <input type="text" placeholder="Job title, Keyword..." />
-      <input type="text" placeholder="Your Location" />
-      <button>Find a Job</button>
+      <input type="text" placeholder="Job title, Keyword..." [(ngModel)]="titleFilter" />
+      <input type="text" placeholder="Your Location" [(ngModel)]="locationFilter" />
+      <button (click)="onSearch()">Find a Job</button>
     </div>
+    
   </header>
-
+  <section class="featured-jobs">
+    <h2>Featured Jobs</h2>
+    <div class="job-cards">
+      <div class="job-card" *ngFor="let job of jobs">
+        <h4>{{ job.title }}</h4>
+        <p>{{ job.company_name }} - {{ job.location }}</p>
+        <span>{{ job.type || 'Full-Time' }}</span>
+      </div>
+    </div>
+    <div *ngIf="noJobsFound" class="no-jobs-message">
+      <p>No jobs found matching your criteria.</p>
+    </div>
+  </section>
+  
   <section class="stats">
     <div>1,75,324<br /><small>Live Jobs</small></div>
     <div>97,354<br /><small>Companies</small></div>
@@ -53,16 +67,7 @@
     </div>
   </section>
 
-  <section class="featured-jobs">
-    <h2>Featured Jobs</h2>
-    <div class="job-cards">
-      <div class="job-card" *ngFor="let job of [1, 2, 3, 4]">
-        <h4>Software Engineer</h4>
-        <p>Google Inc. - Nairobi, Kenya</p>
-        <span>Full-Time</span>
-      </div>
-    </div>
-  </section>
+ 
 
   <section class="testimonials">
     <h2>What Our Users Say</h2>

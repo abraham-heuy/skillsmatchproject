@@ -27,14 +27,11 @@
 
   <!-- Search Bar Section -->
   <div class="search-bar">
-    <input type="text" placeholder="Job title, keyword, company" />
-    <select>
-      <option value="Kenya">Kenya</option>
-      <option value="USA">USA</option>
-      <option value="UK">UK</option>
-    </select>
-    <button>Search</button>
+    <input type="text" placeholder="Job title, Keyword..." [(ngModel)]="titleFilter" />
+    <input type="text" placeholder="Your Location" [(ngModel)]="locationFilter" />
+    <button (click)="onSearch()">Find a Job</button>
   </div>
+  
 
   <!-- Content Section -->
   <div class="dashboard-content">
@@ -42,31 +39,23 @@
     <p>Here are the jobs posted and available matches.</p>
 
     <!-- Job Listings -->
-    <div class="job-listings">
-      <div class="job-card">
-        <h3>Technical Support Specialist</h3>
-        <p>Company: Microsoft</p>
-        <p>Location: Remote</p>
-        <p>Salary: $70,000 - $90,000</p>
-        <a href="#" class="view-job-btn">View Details</a>
-      </div>
 
-      <div class="job-card">
-        <h3>Senior UX Designer</h3>
-        <p>Company: Facebook</p>
-        <p>Location: San Francisco, CA</p>
-        <p>Salary: $100,000 - $150,000</p>
-        <a href="#" class="view-job-btn">View Details</a>
-      </div>
+<!-- Job Listings -->
+<div class="job-listings">
+      <!-- Display a message if no jobs are found -->
+<div *ngIf="noJobsFound" class="no-jobs-message">
+  <p>No jobs found matching your criteria.</p>
+</div>
 
-      <div class="job-card">
-        <h3>Marketing Manager</h3>
-        <p>Company: Google</p>
-        <p>Location: New York, NY</p>
-        <p>Salary: $80,000 - $120,000</p>
-        <a href="#" class="view-job-btn">View Details</a>
-      </div>
-    </div>
+  <div *ngFor="let job of jobs" class="job-card">
+    <h3>{{ job.title }}</h3> <!-- Dynamic title -->
+    <p>Company: {{ job.company }}</p> <!-- Dynamic company -->
+    <p>Location: {{ job.location }}</p> <!-- Dynamic location -->
+    <!-- Removed salary field as per your requirement -->
+    <a href="#" class="view-job-btn">View Details</a>
+  </div>
+</div>
+
   </div>
   <div class="notifications-container">
     <!-- Left Column -->
@@ -178,12 +167,34 @@
     <h3>🤖 Ask SKEELBot</h3>
     <button class="chatbot-close-btn" (click)="toggleChatbot()">✖</button>
   </div>
+
   <div class="chatbot-body">
-    <div class="chatbot-message bot">Hello! How can I assist you today?</div>
-    <!-- Future messages can go here -->
+    <div *ngFor="let msg of chatMessages" class="chat-message" [ngClass]="{'user-message': msg.sender === 'user', 'bot-message': msg.sender === 'bot'}">
+
+      <!-- USER MESSAGE -->
+      <div *ngIf="msg.sender === 'user'" class="chat-bubble user-msg">
+        {{ msg.message }}
+      </div>
+
+      <!-- BOT TEXT REPLY -->
+      <div *ngIf="msg.sender === 'bot' && msg.type === 'text'" class="chat-bubble bot-msg">
+        <pre>{{ msg.message }}</pre>
+      </div>
+
+      <!-- BOT JOB CARDS -->
+      <div *ngIf="msg.sender === 'bot' && msg.type === 'jobList'" class="job-cards-container">
+        <div *ngFor="let job of msg.jobs" class="job-card">
+          <h4>🧑‍💼 {{ job.title }}</h4>
+          <p><strong>Company:</strong> {{ job.company_name }}</p>
+          <p>{{ job.description }}</p>
+        </div>
+      </div>
+
+    </div>
   </div>
+
   <div class="chatbot-input">
-    <input type="text" placeholder="Type your message..." />
-    <button>Send</button>
+    <input type="text" placeholder="Type your message..." [(ngModel)]="userMessage" />
+    <button (click)="sendMessage()">Send</button>
   </div>
 </div>

@@ -60,15 +60,16 @@
       <!-- Manage Users Section -->
       <div *ngIf="selectedSection === 'ManageUsers'" class="content-section">
         <h2>Manage Users</h2>
-        <div *ngFor="let user of dummyUsers" class="user-card">
-          <p><strong>{{ user.name }}</strong></p>
-          <p>Email: {{ user.email }}</p>
-          <p>Role: {{ user.expertise }}</p>
-          <p>Location: {{ user.location }}</p>
-          <button class="action-btn">Ban User</button>
-          <button class="action-btn">Remove User</button>
+        <div *ngFor="let user of users" class="user-card">
+          <h4><strong>{{ user.name }}</strong></h4>
+          <p> <strong>Email: {{ user.email }}</strong></p>
+          <p> <strong>Title: {{ user.title }}</strong></p>
+          <p><strong>Description: {{ user.description }}</strong></p>
+          <p><strong>Location: {{ user.location }}</strong></p>
+          <button class="action-btn" (click)="confirmDelete(user.id, user.name)">Remove User</button>
         </div>
       </div>
+      
 
       <!-- View Data Section -->
       <div *ngIf="selectedSection === 'ViewData'" class="content-section">

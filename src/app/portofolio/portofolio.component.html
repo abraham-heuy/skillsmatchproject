@@ -67,89 +67,100 @@
           + Add Project
         </button>
       </div>
-      <div class="project-card" *ngFor="let project of projects">
+      <div class="project-card" *ngFor="let project of sectionsData['Projects']">
         <div class="project-image">📷</div>
         <div class="project-description">
-          <strong>{{ project.title }}</strong
-          ><br />
-          {{ project.tech }}
-          <p>{{ project.summary }}</p>
+          <h4>{{ project.title }} </h4>
+          <p>🏛️Organisation: <strong>{{ project.organization }}</strong></p>
+          <p>
+            <strong>{{ project.description }}</strong>
+          </p>
+          <p>Location: <strong>{{ project.location }}</strong></p>
+          <p>refernce email: <strong>{{ project.reference_contact}}</strong></p>
           <button class="btn-small">Edit</button>
         </div>
       </div>
     </div>
 
-    <!-- Experience Section -->
-    <div *ngIf="selectedSection === 'Experience'" class="section experience">
-      <div class="section-header">
-        Work Experience
-        <button (click)="openPopup('Experience')" class="btn-edit">
-          + Add Experience
-        </button>
-      </div>
-      <div class="card">
-        <h4>Software Engineer - XYZ Inc.</h4>
-        <p>
-          <strong>2021 - Present</strong><br />Developed scalable web apps using
-          Angular & Node.js.
-        </p>
-      </div>
-      <div class="card">
-        <h4>Intern - ABC Ltd.</h4>
-        <p>
-          <strong>2019 - 2020</strong><br />Assisted in frontend development
-          using React and Firebase.
-        </p>
-      </div>
-    </div>
+  <!-- Experience Section -->
+<div *ngIf="selectedSection === 'Experience'" class="section experience">
+  <div class="section-header">
+    Work Experience
+    <button (click)="openPopup('Experience')" class="btn-edit">
+      + Add Experience
+    </button>
+  </div>
+  <div *ngFor="let experience of sectionsData['Experience']" class="card">
+    <h4>{{ experience.title }} - {{ experience.organization }}</h4>
+          <p>
+            <strong>{{ experience.description }}</strong>
+          </p>
+          <p>Location: <strong>{{ experience.location }}</strong></p>
+          <p>reference email: <strong>{{ experience.reference_contact}}</strong></p>
+          <button class="btn-small">Edit</button>
+  </div>
+  
+</div>
 
-    <!-- Education Section -->
-    <div *ngIf="selectedSection === 'Education'" class="section education">
-      <div class="section-header">
-        Education
-        <button class="btn-edit" (click)="openPopup('Education')">
-          + Add Education
-        </button>
-      </div>
-      <div class="card">
-        <h4>BSc Computer Science</h4>
-        <p>University of Nairobi, 2017 - 2021</p>
-      </div>
-    </div>
+<!-- Education Section -->
+<div *ngIf="selectedSection === 'Education'" class="section education">
+  <div class="section-header">
+    Education
+    <button (click)="openPopup('Education')" class="btn-edit">
+      + Add Education
+    </button>
+  </div>
+  <div *ngFor="let education of sectionsData['Education']" class="card">
+    <h4>{{ education.title }} - {{ education.organization }}</h4>
+    <p>
+      <strong>{{ education.description }}</strong>
+    </p>
+    <p>Location: <strong>{{ education.location }}</strong></p>
+    <p>refernce email: <strong>{{ education.reference_contact}}</strong></p>
+    <button class="btn-small">Edit</button>
+  </div>   
+  
+</div>
 
-    <!-- Certifications Section -->
-    <div
-      *ngIf="selectedSection === 'Certifications'"
-      (click)="openPopup('Certifications')"
-      class="section certifications"
-    >
-      <div class="section-header">
-        Certifications <button class="btn-edit">+ Add Certification</button>
-      </div>
-      <div class="card">
-        <h4>Google Cloud Associate</h4>
-        <p>Issued by Google, 2022</p>
-      </div>
-      <div class="card">
-        <h4>Full Stack Web Developer</h4>
-        <p>Udemy, 2021</p>
-      </div>
-    </div>
+<!-- Certifications Section -->
+<div *ngIf="selectedSection === 'Certifications'" class="section certifications">
+  <div class="section-header">
+    Certifications
+    <button (click)="openPopup('Certifications')" class="btn-edit">
+      + Add Certification
+    </button>
+  </div>
+  <div *ngFor="let certification of sectionsData['Certifications']" class="card">
+    <h4>{{ certification.title }} - {{ certification.organization }}</h4>
+    <p>
+      <strong>{{ certification.description }}</strong>
+    </p>
+    <p>Location: <strong>{{ certification.location }}</strong></p>
+    <p>refernce email: <strong>{{ certification.reference_contact}}</strong></p>
+    <button class="btn-small">Edit</button>
+  </div>
+  
+</div>
 
-    <!-- References Section -->
-    <div
-      *ngIf="selectedSection === 'References'"
-      (click)="openPopup('References')"
-      class="section references"
-    >
-      <div class="section-header">
-        References <button class="btn-edit">+ Add Reference</button>
-      </div>
-      <div class="card">
-        <h4>Jane Doe</h4>
-        <p>Manager at XYZ Inc.<br />Email: jane&#64;example.com</p>
-      </div>
-    </div>
+<!-- References Section -->
+<div *ngIf="selectedSection === 'References'" class="section references">
+  <div class="section-header">
+    References
+    <button (click)="openPopup('References')" class="btn-edit">
+      + Add Reference
+    </button>
+  </div>
+  <div *ngFor="let reference of sectionsData['References']" class="card">
+    <h4>{{ reference.title }}   🏛️{{ reference.organization }}</h4>
+    <p>
+      <strong>{{ reference.description }}</strong>
+    </p>
+    <p>Location: <strong>{{ reference.location }}</strong></p>
+    <p>refernce email: <strong>{{ reference.reference_contact}}</strong></p>
+    <button class="btn-small">Edit</button>
+  </div>
+</div>
+
     <!-- CV Upload Section -->
     <div *ngIf="selectedSection === 'CVUpload'" class="section cv-upload">
       <div class="section-header">
@@ -173,56 +184,62 @@
   <div class="modal-content">
     <span class="close-btn" (click)="closePopup()">&times;</span>
     <h3>{{ activePopupTitle }}</h3>
+ <!-- Projects Form -->
+<form *ngIf="activePopup === 'Projects'" (submit)="submitProject($event)">
+  <input type="text" [(ngModel)]="formData.title" name="title" placeholder="Project Title" required />
+  <textarea [(ngModel)]="formData.description" name="description" placeholder="Project Description" rows="3" required></textarea>
+  <input type="text" [(ngModel)]="formData.technologies" name="technologies" placeholder="Technologies Used" required />
+  <input type="date" [(ngModel)]="formData.start_date" name="start_date" placeholder="Start Date" required />
+  <input type="date" [(ngModel)]="formData.end_date" name="end_date" placeholder="End Date" required />
+  <input type="url" [(ngModel)]="formData.project_link" name="project_link" placeholder="Project Link (optional)" />
+  <button type="submit" class="btn-submit">Save Project</button>
+</form>
 
-    <!-- Project Form -->
-    <form *ngIf="activePopup === 'Projects'" (submit)="submitProject($event)">
-      <input type="text" placeholder="Project Title" required />
-      <input type="text" placeholder="Technologies Used" required />
-      <textarea placeholder="Short Summary" rows="3" required></textarea>
-      <button type="submit" class="btn-submit">Save Project</button>
-    </form>
 
-    <!-- Experience Form -->
-    <form
-      *ngIf="activePopup === 'Experience'"
-      (submit)="submitExperience($event)"
-    >
-      <input type="text" placeholder="Position Title" required />
-      <input type="text" placeholder="Company Name" required />
-      <textarea placeholder="Summary" rows="3" required></textarea>
-      <button type="submit" class="btn-submit">Save Experience</button>
-    </form>
+  
+   <!-- Experience Form -->
+<form *ngIf="activePopup === 'Experience'" (submit)="submitExperience($event)">
+  <input type="text" [(ngModel)]="formData.title" name="title" placeholder="Position Title" required />
+  <input type="text" [(ngModel)]="formData.organization" name="organization" placeholder="Company Name" required />
+  <input type="text" [(ngModel)]="formData.location" name="location" placeholder="Location" required />
+  <textarea [(ngModel)]="formData.description" name="description" placeholder="Summary" rows="3" required></textarea>
+  <input type="date" [(ngModel)]="formData.start_date" name="start_date" placeholder="Start Date" required />
+  <input type="date" [(ngModel)]="formData.end_date" name="end_date" placeholder="End Date" required />
+  <input type="email" [(ngModel)]="formData.reference_contact" name="reference_contact" placeholder="Reference Contact Email" required />
+  <button type="submit" class="btn-submit">Save Experience</button>
+</form>
 
-    <!-- Education Form -->
-    <form
-      *ngIf="activePopup === 'Education'"
-      (submit)="submitEducation($event)"
-    >
-      <input type="text" placeholder="Degree Title" required />
-      <input type="text" placeholder="Institution" required />
-      <button type="submit" class="btn-submit">Save Education</button>
-    </form>
+<!-- Education Form -->
+<form *ngIf="activePopup === 'Education'" (submit)="submitEducation($event)">
+  <input type="text" [(ngModel)]="formData.title" name="title" placeholder="Degree Title" required />
+  <input type="text" [(ngModel)]="formData.institution" name="institution" placeholder="Institution Name" required />
+  <input type="text" [(ngModel)]="formData.location" name="location" placeholder="Location" required />
+  <textarea [(ngModel)]="formData.description" name="description" placeholder="Summary" rows="3" required></textarea>
+  <input type="date" [(ngModel)]="formData.start_date" name="start_date" placeholder="Start Date" required />
+  <input type="date" [(ngModel)]="formData.end_date" name="end_date" placeholder="End Date" required />
+  <button type="submit" class="btn-submit">Save Education</button>
+</form>
 
-    <!-- Certification Form -->
-    <form
-      *ngIf="activePopup === 'Certifications'"
-      (submit)="submitCertification($event)"
-    >
-      <input type="text" placeholder="Certification Title" required />
-      <input type="text" placeholder="Issuer" required />
-      <button type="submit" class="btn-submit">Save Certification</button>
-    </form>
+<!-- Certifications Form -->
+<form *ngIf="activePopup === 'Certifications'" (submit)="submitCertification($event)">
+  <input type="text" [(ngModel)]="formData.title" name="title" placeholder="Certification Title" required />
+  <input type="text" [(ngModel)]="formData.issuer" name="issuer" placeholder="Issuer Name" required />
+  <input type="text" [(ngModel)]="formData.location" name="location" placeholder="Location" required />
+  <textarea [(ngModel)]="formData.description" name="description" placeholder="Summary" rows="3" required></textarea>
+  <input type="date" [(ngModel)]="formData.issue_date" name="issue_date" placeholder="Issue Date" required />
+  <button type="submit" class="btn-submit">Save Certification</button>
+</form>
 
-    <!-- Reference Form -->
-    <form
-      *ngIf="activePopup === 'References'"
-      (submit)="submitReference($event)"
-    >
-      <input type="text" placeholder="Reference Name" required />
-      <input type="email" placeholder="Email" required />
-      <textarea placeholder="Description" rows="2"></textarea>
-      <button type="submit" class="btn-submit">Save Reference</button>
-    </form>
+<!-- References Form -->
+<form *ngIf="activePopup === 'References'" (submit)="submitReference($event)">
+  <input type="text" [(ngModel)]="formData.name" name="name" placeholder="Reference Name" required />
+  <input type="text" [(ngModel)]="formData.title" name="title" placeholder="Reference Title" required />
+  <input type="text" [(ngModel)]="formData.organization" name="organization" placeholder="Organization Name" required />
+  <textarea [(ngModel)]="formData.description" name="description" placeholder="Summary" rows="3" required></textarea>
+  <input type="email" [(ngModel)]="formData.contact_email" name="contact_email" placeholder="Reference Contact Email" required />
+  <button type="submit" class="btn-submit">Save Reference</button>
+</form>
+
     <!-- CV Upload Form -->
     <div *ngIf="activePopup === 'CVUpload'" class="cv-upload-form">
       <div class="upload-tabs">

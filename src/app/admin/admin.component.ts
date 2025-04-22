@@ -1,7 +1,8 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { NgChartsModule } from 'ng2-charts';  // Import ng2-charts
 import { ChartData, ChartOptions } from 'chart.js';
+import { UsersService, User} from '@app/app/Services/users/users.service';  // Import the UserService
 
 @Component({
   selector: 'app-admin',
@@ -10,24 +11,23 @@ import { ChartData, ChartOptions } from 'chart.js';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
 
   selectedSection: string = 'ManageUsers';
 
-  // Chart.js bar chart data
+  // Data for charts
   barChartData = {
-    labels: ['January', 'February', 'March', 'April'], // X-axis labels
+    labels: ['January', 'February', 'March', 'April'],
     datasets: [
       {
         label: 'Applications Received',
-        data: [1200, 1900, 3000, 2500], // Dummy data
+        data: [1200, 1900, 3000, 2500],
         backgroundColor: '#007bff',
         hoverBackgroundColor: '#0056b3',
       },
     ],
   };
 
-  // Chart.js chart options
   barChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -35,58 +35,80 @@ export class AdminComponent {
       legend: { display: true, position: 'top' },
     },
     scales: {
-      x: {
-        title: { display: true, text: 'Months' },
-        grid: { display: false },
-      },
-      y: {
-        title: { display: true, text: 'Applications' },
-        beginAtZero: true,
-      },
+      x: { title: { display: true, text: 'Months' }, grid: { display: false } },
+      y: { title: { display: true, text: 'Applications' }, beginAtZero: true },
     },
   };
 
-  
-
-  performance = {
-    recruiter: 45,
-    users: 85,
-    chatbot: 92,
-  };
-
   pieChartData: ChartData<'pie', number[], string> = {
-    labels: ['Recruiter', 'Users', 'Chatbot'], // Labels for the pie slices
+    labels: ['Recruiter', 'Users', 'Chatbot'],
     datasets: [
       {
         label: 'Performance Metrics',
-        data: [45, 85, 92], // Pie chart values
-        backgroundColor: ['#007bff', '#28a745', '#dc3545'], // Colors for each slice
+        data: [45, 85, 92],
+        backgroundColor: ['#007bff', '#28a745', '#dc3545'],
       },
     ],
   };
 
-  // Pie Chart Options
   pieChartOptions: ChartOptions<'pie'> = {
     responsive: true,
     plugins: {
       legend: { position: 'top' },
       tooltip: {
         callbacks: {
-          label: (tooltipItem) =>
-            `${tooltipItem.label}: ${tooltipItem.raw}%`, // Display percentage
+          label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.raw}%`,
         },
       },
     },
   };
 
+  performance = { recruiter: 45, users: 85, chatbot: 92 };
+
+  // Store users fetched from API
+  users: User[] = [];
+
+  constructor(private userService: UsersService) {}
+
+  ngOnInit(): void {
+    // Fetch users when the component initializes
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
+    this.userService.getUsers().subscribe(
+      (data: User[]) => {
+        this.users = data; // Populate the users array with data from the API
+      },
+      (error) => {
+        console.error('Error fetching users:', error);
+        // You can handle error messages here if you want to display them
+      }
+    );
+  }
+  confirmDelete(userId: number, userName: string): void {
+    const confirmation = window.confirm(`Are you sure you want to delete ${userName}?`);
+
+    if (confirmation) {
+      this.deleteUser(userId);
+    }
+  }
+  deleteUser(userId: number) {
+    this.userService.deleteUser(userId).subscribe(
+      (response) => {
+        // Remove user from the list after successful deletion
+        this.users = this.users.filter((user) => user.id !== userId);
+        alert('User deleted successfully!');
+      },
+      (error) => {
+        alert('Failed to delete user!');
+      }
+    );
+  }
+
   toggleSection(section: string) {
     this.selectedSection = section;
   }
-
-  dummyUsers = [
-    { name: 'John Doe', email: 'johndoe@example.com', expertise: 'React Expert', location: 'Dhaka, Bangladesh' },
-    { name: 'Jane Smith', email: 'janesmith@example.com', expertise: 'Python Developer', location: 'Nairobi, Kenya' },
-  ];
 
   dummyStats = {
     liveJobs: '1,75,324',
@@ -105,4 +127,6 @@ export class AdminComponent {
     applications: 2588,
     changePercentage: 2.1,
   };
+
+
 }
