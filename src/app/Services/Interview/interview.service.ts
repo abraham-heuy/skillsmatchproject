@@ -17,7 +17,7 @@ export interface Interview {
 })
 export class InterviewService {
 
-  private baseUrl = 'http://13.61.180.100:3000/api/v1/interviews'; // Change this to your backend URL
+  private baseUrl = 'http://13.51.48.201:3000/api/v1/interviews'; // Change this to your backend URL
 
   constructor(private http: HttpClient) {}
 

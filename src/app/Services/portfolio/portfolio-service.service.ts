@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PortfolioServiceService {
-   private baseUrl ='http://13.61.180.100:3000/api/v1/portfolio'
+   private baseUrl ='http://13.51.48.201:3000/api/v1/portfolio'
   constructor(private http: HttpClient) { }
   getSectionItems(section: string) {
     return this.http.get<any[]>(`${this.baseUrl}/${section}`);

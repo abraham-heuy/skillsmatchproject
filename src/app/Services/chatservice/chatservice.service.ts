@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class ChatserviceService {
-  private apiUrl =  'http://13.61.180.100:3000/api/v1/chat/chatroute' 
-  private resultApi= 'http://13.61.180.100:3000/api/v1/chat/matched-candidates'
+  private apiUrl =  'http://13.51.48.201:3000/api/v1/chat/chatroute' 
+  private resultApi= 'http://13.51.48.201:3000/api/v1/chat/matched-candidates'
 
   constructor(private http: HttpClient) { }
   getResponse(message: string): Observable<any> {

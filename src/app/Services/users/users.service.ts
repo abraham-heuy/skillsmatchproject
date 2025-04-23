@@ -18,7 +18,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'http://13.61.180.100:3000/api/v1/users'
+  private apiUrl = 'http://13.51.48.201:3000/api/v1/users'
 
   getUsers():Observable<User[]>{
     return this.http.get<User[]>(this.apiUrl)

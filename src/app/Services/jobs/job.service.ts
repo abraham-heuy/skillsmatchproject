@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class JobService {
-  private apiUrl = 'http://13.61.180.100:3000/api/v1/jobs'; // Base URL for jobs
-  private filterUrl = 'http://13.61.180.100:3000/api/v1/filters/filter-jobs'; // URL for filtering jobs
-  private filterCandidateUrl = 'http://13.61.180.100:3000/api/v1/filters/filter-candidates';
+  private apiUrl = 'http://13.51.48.201:3000/api/v1/jobs'; // Base URL for jobs
+  private filterUrl = 'http://13.51.48.201:3000/api/v1/filters/filter-jobs'; // URL for filtering jobs
+  private filterCandidateUrl = 'http://13.51.48.201:3000/api/v1/filters/filter-candidates';
 
   constructor(private http: HttpClient) { }
 
